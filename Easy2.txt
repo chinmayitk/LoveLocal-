@@ -1,0 +1,42 @@
+class TreeNode:
+    def _init_(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def sortedArrayToBST(nums):
+    if not nums:
+        return None
+    
+    mid = len(nums) // 2
+    root = TreeNode(nums[mid])
+    
+    root.left = sortedArrayToBST(nums[:mid])
+    root.right = sortedArrayToBST(nums[mid+1:])
+    
+    return root
+
+# Function to print the BST in a way that explicitly shows null values
+def printBSTWithNull(root):
+    if root:
+        print(root.val, end=" ")
+        if root.left or root.right:
+            if root.left:
+                printBSTWithNull(root.left)
+            else:
+                print("null", end=" ")
+            if root.right:
+                printBSTWithNull(root.right)
+            else:
+                print("null", end=" ")
+        else:
+            return
+Above is the Logic for the code and below is the input values and output.
+
+# Example 1 input: nums = [-10,-3,0,5,9]
+nums1 = [-10, -3, 0, 5, 9]
+result1 = sortedArrayToBST(nums1)
+
+# Print the BST from Example 1 showing null values
+print("Example 1 Output:")
+printBSTWithNull(result1)  # Output: 0 -3 9 -10 null 5 null

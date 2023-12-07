@@ -1,0 +1,11 @@
+from collections import Counter
+nums= list(map(int,input().split()))
+element_count = Counter(nums)
+majority_elements = []
+threshold= len(nums) // 3
+
+for element, count in element_count.items():
+    if count > threshold:
+        majority_elements.append(element)
+
+print(majority_elements)	
